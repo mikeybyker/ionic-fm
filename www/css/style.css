@@ -1,0 +1,30 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+{
+  display: none !important;
+}
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+.image-link
+{
+    display: block;
+}
+.bar.bar-footer.modal-footer
+{
+    height: auto;
+    min-height: 50px;
+}
+    .bar.bar-footer.modal-footer button
+    {
+        position: absolute;
+        min-width: 75px;
+        top: 5px;
+        bottom: 5px;
+    }
+h2.album-title
+{
+    margin-top: 0;
+    font-size: 1.5rem;
+}
