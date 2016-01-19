@@ -1,6 +1,6 @@
 (function(){
     'use strict';
-    
+
     angular
         .module('ionicfm', [
             'ionic',
@@ -9,7 +9,7 @@
             'sw.common'
         ])
 
-        .config(function($stateProvider, $urlRouterProvider) {
+        .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
             $stateProvider.state('home',{
                 url: '/',
@@ -22,8 +22,7 @@
                 url: '/artist/:artistname',
                 templateUrl: 'views/artist.html',
                 controller: 'ArtistController',
-                controllerAs: 'vc',
-                cache: false
+                controllerAs: 'vc'
             });
 
             $stateProvider.state('album',{
@@ -34,6 +33,10 @@
             });
 
             $urlRouterProvider.otherwise('/');
+
+            // Just want the icon, not the text, for the back button
+            $ionicConfigProvider.backButton.text('');
+            $ionicConfigProvider.backButton.previousTitleText('');
 
         })
 

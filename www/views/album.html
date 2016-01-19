@@ -3,9 +3,7 @@
         {{vc.album.name}}
     </ion-nav-title>
     <ion-content class="padding">
-
         <div ng-if="vc.album" class="list card">
-
             <div class="item item-avatar">
                 <img ng-src="{{vc.getImage(vc.album, 'small')}}">
                 <h2>{{vc.artistname}} - {{vc.album.name}}</h2>
@@ -14,7 +12,6 @@
                     <strong>Play Count</strong>: {{vc.album.playcount}}
                 </h3>
             </div>
-
             <div class="item item-body">
                 <div class="row responsive-md">
                     <div class="col">

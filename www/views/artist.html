@@ -1,29 +1,25 @@
-<ion-view  >
+<ion-view>
     <ion-nav-title>
         {{vc.artist.name}}
     </ion-nav-title>
     <ion-content class="padding">
         <div ng-if="vc.artist" class="list card">
-
-          <div class="item item-avatar">
-            <img ng-src="{{vc.getImage(vc.artist, 'small')}}">
-            <h2>{{vc.artist.name}}</h2>
-          </div>
-
-          <div class="item item-body">
-
-            <div class="row responsive-md">
-                <div class="col">
-                    <a ng-href class="image-link" ng-click="vc.openLink(vc.artist.url)">
-                        <img ng-src="{{vc.mainimage}}" alt="{{vc.artist.name}}">
-                    </a>
-                </div>
-                <div class="col">
-                    <p ng-bind-html="vc.artist.bio.summary"></p>
-                </div>
+            <div class="item item-avatar">
+                <img ng-src="{{vc.getImage(vc.artist, 'small')}}">
+                <h2>{{vc.artist.name}}</h2>
             </div>
 
-
+            <div class="item item-body">
+                <div class="row responsive-md">
+                    <div class="col">
+                        <a ng-href class="image-link" ng-click="vc.openLink(vc.artist.url)">
+                            <img ng-src="{{vc.mainimage}}" alt="{{vc.artist.name}}">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <p ng-bind-html="vc.artist.bio.summary"></p>
+                    </div>
+                </div>
                 <dl>
                     <dt>
                         <strong>Listeners</strong>
@@ -34,8 +30,7 @@
                     </dt>
                     <dd>{{vc.artist.stats.playcount}}</dd>
                 </dl>
-          </div>
-
+            </div>
         </div>
         <h2 class="title">Popular Albums</h2>
         <ion-list>

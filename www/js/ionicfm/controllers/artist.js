@@ -1,6 +1,6 @@
 (function(){
     'use strict';
-    
+
     angular.module('sw.ionicfm')
         .controller('ArtistController', function ($state, $log, $ionicConfig, $ionicLoading, $ionicHistory, $ionicScrollDelegate, LastFM, Utilities) {
 
@@ -8,7 +8,7 @@
             this.artist = {};
             this.albums = [];
             this.mainimage = '';
-            $ionicConfig.backButton.text('Search');
+            // $ionicConfig.backButton.text('Search');
 
             if(this.artistname){
                 $ionicLoading.show({
@@ -28,7 +28,7 @@
                         $log.warn('Error ::: ', reason);
                         Utilities.showDataError(reason)
                             .then(function(result) {
-                                  $state.go('home'); 
+                                  $state.go('home');
                             });
                     })
                     .finally(function(){
