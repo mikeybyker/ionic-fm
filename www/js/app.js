@@ -37,17 +37,6 @@
 
         })
 
-        .constant('CONSTANTS',
-            {
-            server:{
-                host: 'http://ws.audioscrobbler.com/2.0/'
-            },
-            lastfm:{
-                format: 'json',
-                api_key: 'YOUR_API_KEY'
-            }
-        })
-
         .run(function($ionicPlatform) {
             $ionicPlatform.ready(function() {
                 if(window.cordova && window.cordova.plugins.Keyboard) {
