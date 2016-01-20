@@ -4,11 +4,14 @@
     <description>
         LastFm app with Ionic and Cordova.
     </description>
-    <author email="you@example.com" href="http://example.com.com/">
+    <author email="mikeybyker+app@gmail.com" href="http://sinisterwaltz.com/">
         Mike
     </author>
     <content src="index.html"/>
     <access origin="*"/>
+    <allow-navigation href="*://*.sinisterwaltz.com/*" />
+    <allow-navigation href="*://*.last.fm/*" />
+    <allow-navigation href="*://*.audioscrobbler.com/*" />
     <preference name="webviewbounce" value="false"/>
     <preference name="UIWebViewBounce" value="false"/>
     <preference name="DisallowOverscroll" value="true"/>
