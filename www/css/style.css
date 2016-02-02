@@ -1,4 +1,10 @@
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+/* angular stuff*/
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak
 {
   display: none !important;
 }
@@ -7,6 +13,7 @@
 [x-ng-click] {
     cursor: pointer;
 }
+/* couple of extra styles*/
 .image-link
 {
     display: block;
