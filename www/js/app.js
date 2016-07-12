@@ -11,26 +11,35 @@
 
         .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-            $stateProvider.state('home',{
-                url: '/',
-                templateUrl: 'views/home.html',
-                controller: 'HomeController',
-                controllerAs: 'vc'
-            });
+            $stateProvider
 
-            $stateProvider.state('artist',{
-                url: '/artist/:artistname',
-                templateUrl: 'views/artist.html',
-                controller: 'ArtistController',
-                controllerAs: 'vc'
-            });
+                .state('home',{
+                    url: '/',
+                    templateUrl: 'views/home.html',
+                    controller: 'HomeController',
+                    controllerAs: 'vc'
+                })
 
-            $stateProvider.state('album',{
-                url: '/artist/:artistname/album/:mbid',
-                templateUrl: 'views/album.html',
-                controller: 'AlbumController',
-                controllerAs: 'vc'
-            });
+                .state('artist',{
+                    url: '/artist/:artistname',
+                    templateUrl: 'views/artist.html',
+                    controller: 'ArtistController',
+                    controllerAs: 'vc'
+                })
+
+                .state('album',{
+                    url: '/artist/:artistname/album/:mbid',
+                    templateUrl: 'views/album.html',
+                    controller: 'AlbumController',
+                    controllerAs: 'vc'
+                })
+
+                .state('api',{
+                    url: '/api',
+                    templateUrl: 'views/api.html',
+                    controller: 'APIController',
+                    controllerAs: 'vc'
+                });
 
             $urlRouterProvider.otherwise('/');
 

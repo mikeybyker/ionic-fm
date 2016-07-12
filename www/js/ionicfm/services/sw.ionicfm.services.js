@@ -1,12 +1,16 @@
 (function(){
     'use strict';
 
-    angular.module('sw.ionicfm')
-        .factory('LastFM', function ($q, $http, $log, CONSTANTS, LastFMService) {
+    angular
+        .module('sw.ionicfm')
+        .factory('LastFM', function ($q, CONSTANTS, LastFMService) {
 
+            var lastFmConfig = CONSTANTS.lastfm;
+
+            // Artist
             function searchArtists(artist, options){
                 var params = angular.extend(
-                                CONSTANTS.lastfm,
+                                lastFmConfig,
                                 {
                                     artist: artist,
                                     method: 'artist.search',
@@ -19,7 +23,7 @@
 
             function getArtistInfo(artist, options){
                 var params = angular.extend(
-                                CONSTANTS.lastfm,
+                                lastFmConfig,
                                 {
                                     artist: artist,
                                     method: 'artist.getInfo',
@@ -31,7 +35,7 @@
 
             function getTopAlbums(artist, options){
                 var params = angular.extend(
-                                CONSTANTS.lastfm,
+                                lastFmConfig,
                                 {
                                     artist: artist,
                                     method: 'artist.getTopAlbums',
@@ -41,10 +45,10 @@
                 return LastFMService.get(params).$promise;
             }
 
-            // From similar artist - so the name is set by last.fm - so no need to search
+            // From similar artist - the name is set by last.fm - so no need to search
             function getArtistByName(artist, options){
                 var params = angular.extend(
-                                CONSTANTS.lastfm,
+                                lastFmConfig,
                                 {
                                     artist: artist,
                                     method: 'artist.getInfo',
@@ -54,13 +58,51 @@
                 return LastFMService.get(params).$promise;
             }
 
+            function getAllArtist(artist, options, optionsAlbums){
+                // return reject({data:'ooh', status:404, statusText:'WANNA'});
+                return $q.all([getArtistInfo(artist, options), getTopAlbums(artist, optionsAlbums)]);
+            }
+
+            // Album
             function getAlbumInfo(mbid, options){
                 var params = angular.extend(
-                                CONSTANTS.lastfm,
+                                lastFmConfig,
                                 {
                                     mbid: mbid,
                                     method: 'album.getInfo'
                                 },
+                                options || {});
+                return LastFMService.get(params).$promise;
+            }
+            function searchAlbum(album, options){
+                var params = angular.extend(
+                                lastFmConfig,
+                                {
+                                    album: album,
+                                    method: 'album.search',
+                                    limit: 8
+                                },
+                                options || {});
+                return LastFMService.get(params).$promise;
+            }
+            // @todo
+            // if mbid, ignore artist, album
+            // else - need both
+            function getTopTags(artist, album, mbid, options){
+                var params,
+                    o = {
+                            method: 'album.gettoptags',
+                            limit: 8
+                    };
+                if(mbid){
+                    o.mbid = mbid;
+                } else{
+                    o.album = album;
+                    o.artist = artist;
+                }
+                params = angular.extend(
+                                lastFmConfig,
+                                o,
                                 options || {});
                 return LastFMService.get(params).$promise;
             }
@@ -76,13 +118,17 @@
             }
 
             var API = {
-                getArtistInfo : getArtistInfo,
-                searchArtists : searchArtists,
-                getTopAlbums: getTopAlbums,
-                getSimilarArtist: getArtistByName,
-                getAlbumInfo: getAlbumInfo,
-                getAllArtist: function(artist, options, optionsAlbums){
-                    return $q.all([getArtistInfo(artist, options), getTopAlbums(artist, optionsAlbums)]);
+                Artist :{
+                    search :        searchArtists,
+                    byName :        getArtistByName,
+                    info :          getArtistInfo,
+                    albums:         getTopAlbums,
+                    artist:         getAllArtist  // $q.all of preceding 2
+                },
+                Album :{
+                    info:           getAlbumInfo,
+                    search:         searchAlbum,
+                    topTags:        getTopTags
                 }
             };
 

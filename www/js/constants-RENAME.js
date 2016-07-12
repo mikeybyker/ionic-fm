@@ -3,7 +3,8 @@
 (function(){
     'use strict';
 
-    angular.module('sw.ionicfm')
+    angular
+        .module('sw.ionicfm')
         .constant('CONSTANTS',
             {
             server:{

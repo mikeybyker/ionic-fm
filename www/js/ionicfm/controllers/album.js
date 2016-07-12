@@ -1,7 +1,8 @@
 (function(){
     'use strict';
 
-    angular.module('sw.ionicfm')
+    angular
+        .module('sw.ionicfm')
         .controller('AlbumController', function ($state, $log, $ionicConfig, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities, appModalService) {
 
             this.artistname = $state.params.artistname;
@@ -15,7 +16,8 @@
                 $ionicLoading.show({
                   template: '<p>Loading...</p><ion-spinner></ion-spinner>'
                 });
-                LastFM.getAlbumInfo(this.albumId, {})
+                // LastFM.getAlbumInfo(this.albumId, {})
+                LastFM.Album.info(this.albumId, {})
                     .then(function(response) {
                         $log.info('getAlbumInfo > response ::: ', response);
                         if(response.error){

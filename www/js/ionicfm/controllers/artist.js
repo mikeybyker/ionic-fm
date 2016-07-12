@@ -1,8 +1,9 @@
 (function(){
     'use strict';
 
-    angular.module('sw.ionicfm')
-        .controller('ArtistController', function ($state, $log, $ionicConfig, $ionicLoading, $ionicHistory, $ionicScrollDelegate, LastFM, Utilities) {
+    angular
+        .module('sw.ionicfm')
+        .controller('ArtistController', function ($state, $log, $q, $ionicConfig, $ionicLoading, $ionicHistory, $ionicScrollDelegate, LastFM, Utilities) {
 
             this.artistname = $state.params.artistname;
             this.artist = {};
@@ -16,16 +17,19 @@
                 });
 
                 var self = this;
-                LastFM.getAllArtist(this.artistname, {}, {limit: 6})
+                // LastFM.getAllArtist(this.artistname, {}, {limit: 6})
+                LastFM.Artist.artist(this.artistname, {}, {limit: 6})
                     .then(function(response) {
-                        $log.info('getAllArtist > response ::: ', response);
+                        // $log.info('getAllArtist > response ::: ', response);
+                        if(!response[0].artist || !response[1].topalbums){
+                            return $q.reject({status:404, statusText:'Bad data returned, sorry.'});
+                        }
                         self.artist = response[0].artist;
-                        $log.info('self.artist ::: ', self.artist);
                         self.albums = response[1].topalbums.album;
                         self.mainimage = Utilities.getImage(self.artist, 'extralarge');
                         $ionicScrollDelegate.resize();
-                    }, function(reason) {
-                        $log.warn('Error ::: ', reason);
+                    })
+                    .catch(function(reason) {
                         Utilities.showDataError(reason)
                             .then(function(result) {
                                   $state.go('home');

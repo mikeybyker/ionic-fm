@@ -35,3 +35,8 @@ h2.album-title
     margin-top: 0;
     font-size: 1.5rem;
 }
+/* Just for api json data */
+.json-card
+{
+    min-height: 500px;
+}

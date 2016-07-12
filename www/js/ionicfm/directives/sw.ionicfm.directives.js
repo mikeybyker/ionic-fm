@@ -1,7 +1,8 @@
 (function(){
     'use strict';
 
-    angular.module('sw.ionicfm')
+    angular
+        .module('sw.ionicfm')
         .directive('breadcrumbs', function () {
             return {
                 template: '   <ul class="breadcrumbs clearfix">' +

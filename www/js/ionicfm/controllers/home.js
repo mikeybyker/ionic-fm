@@ -1,7 +1,8 @@
 (function(){
     'use strict';
 
-    angular.module('sw.ionicfm')
+    angular
+        .module('sw.ionicfm')
         .controller('HomeController', function ($state, $log, $ionicLoading, LastFM, Utilities) {
 
             this.hideBack = true;
@@ -21,7 +22,7 @@
                 $ionicLoading.show({
                     template: '<p>Loading...</p><ion-spinner></ion-spinner>'
                 });
-                LastFM.searchArtists(this.master.artist, {limit:5})
+                LastFM.Artist.search(this.master.artist, {limit:5})
                     .then(function(response) {
                         $log.info('searchArtists > response ::: ', response);
                         self.potentials = response.results.artistmatches.artist;
