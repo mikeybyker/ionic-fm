@@ -1,6 +1,6 @@
 (function(){
     'use strict';
-    
+
     angular.module('sw.ionicfm')
         .controller('HomeController', function ($state, $log, $ionicLoading, LastFM, Utilities) {
 
@@ -20,11 +20,11 @@
                 }
                 $ionicLoading.show({
                     template: '<p>Loading...</p><ion-spinner></ion-spinner>'
-                });            
-                LastFM.searchArtists(this.master.artist)
+                });
+                LastFM.searchArtists(this.master.artist, {limit:5})
                     .then(function(response) {
                         $log.info('searchArtists > response ::: ', response);
-                        self.potentials = response.results.artistmatches.artist; 
+                        self.potentials = response.results.artistmatches.artist;
                     }, function(reason) {
                         $log.info('Error ::: ', reason);
                         Utilities.showDataError(reason);
