@@ -4,7 +4,6 @@
     angular
         .module('ionicfm', [
             'ionic',
-            'ngResource',
             'sw.ionicfm',
             'sw.common',
             'sw.lastfm'
