@@ -3,7 +3,9 @@
     
     angular
         .module('sw.ionicfm')
-        .factory('Utilities', function ($log, ModalService) {
+        .factory('Utilities', Utilities);
+
+        function Utilities($log, ModalService) {
 
             var placeholder = 'http://placehold.it/174x174';
 
@@ -44,5 +46,5 @@
             }
 
             return Util;
-        });
+        }
 }());

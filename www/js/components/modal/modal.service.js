@@ -85,7 +85,7 @@
 
             return result;
         }
-    } // end
+    }
 
     function AlertController($scope, parameters) {
         this.message = parameters;
@@ -96,4 +96,5 @@
             $scope.closeModal(null);
         };
     }
+    
 })();
