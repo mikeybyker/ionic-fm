@@ -29,7 +29,10 @@
                     window.open(url, '_blank');
                 },
                 showDataError :function(reason){
-                    return this.showAlert({body:reason.statusText || 'Bit of a problem loading data...Sorry.'});
+                    return this.showAlert({
+                                            body:reason.statusText || 'Bit of a problem loading data...Sorry.',
+                                            title: reason.title || 'Server Error'
+                                        });
                 },
                 showAlert :function(message){
                     var params = angular.extend(

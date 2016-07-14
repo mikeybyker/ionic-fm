@@ -1,4 +1,4 @@
-<ion-view >
+<ion-view>
     <ion-nav-title>
         API Tests
     </ion-nav-title>
@@ -6,42 +6,45 @@
         <div class="row">
             <div class="col col-33">
                 <div class="card">
-                    <div class="list">
+                    
 
-                        <div class="item item-input-inset">
-                            <label class="item-input-wrapper">
-                                <i class="icon ion-ios-search placeholder-icon"></i>
-                                <input type="text" placeholder="Search Album Name" ng-model="vc.albumName">
-                            </label>
-                            <button class="button button-small"
-                                ng-click="vc.apiCall(1, vc.albumName)" ng-disabled="!vc.albumName">
-                                Go
-                            </button>
-                        </div>
+                        <api-input api-methods="$ctrl.apiMethods" on-call="$ctrl.apiCall(data, params)"></api-input>
 
-                        <div class="item item-input-inset">
-                            <label class="item-input-wrapper">
-                                <i class="icon ion-ios-search placeholder-icon"></i>
-                                <input type="text" placeholder="Top Tags" ng-model="vc.albumName">
-                            </label>
-                            <button class="button button-small"
-                                ng-click="vc.apiCall(2, vc.albumName)" >
-                                Go
-                            </button>
-                        </div>
-
-                    </div>
+                    
                 </div>
             </div>
             <div class="col col-67">
                 <div class="card json-card">
-                    <pre>{{vc.output || json}}</pre>
+                    <pre>{{$ctrl.output || json}}</pre>
                 </div>
             </div>
         </div>
 
-
-
-
     </ion-content>
 </ion-view>
+
+<!--
+
+<div class="item item-input-inset">
+    <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="text" placeholder="Search Album Name" ng-model="$ctrl.albumName1">
+    </label>
+    <button class="button button-small button-royal"
+        ng-click="$ctrl.apiCallDirect(1, $ctrl.albumName1)" ng-disabled="!$ctrl.albumName1">
+        Go
+    </button>
+</div>
+
+<div class="item item-input-inset">
+    <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="text" placeholder="Top Tags" ng-model="$ctrl.albumName2">
+    </label>
+    <button class="button button-small button-royal"
+        ng-click="$ctrl.apiCallDirect(2, 'The Cure', 'Disintegration', '')" >
+        Go
+    </button>
+</div>
+
+-->

@@ -3,12 +3,11 @@
 
     angular
         .module('sw.ionicfm')
-        .controller('AlbumController', function ($state, $log, $ionicConfig, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities, appModalService) {
+        .controller('AlbumController', function ($state, $log, $q, $ionicConfig, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities, appModalService) {
 
             this.artistname = $state.params.artistname;
             this.albumId = $state.params.mbid;
             this.album = {};
-            // $ionicConfig.backButton.text(this.artistname);
 
             var self = this;
 
@@ -16,27 +15,23 @@
                 $ionicLoading.show({
                   template: '<p>Loading...</p><ion-spinner></ion-spinner>'
                 });
-                // LastFM.getAlbumInfo(this.albumId, {})
-                LastFM.Album.info(this.albumId, {})
+                // $log.info('this.albumId (mbid) ::: ', this.albumId);
+
+                LastFM.Album.albumById(this.albumId, {})
                     .then(function(response) {
-                        $log.info('getAlbumInfo > response ::: ', response);
-                        if(response.error){
-                            $log.warn('Last FM ERROR ::: ', response.message || 'Last.fm couldn\'t find the album');
-                            var message = {body: response.message || 'Last.fm couldn\'t find the album', title:'Not Found'};
-                            Utilities.showAlert(message)
-                                .then(function(result) {
-                                      $state.go('artist', {artistname: self.artistname});
-                                });
-                            return;
+                        $log.info('LastFM.Album.albumById > response.data ::: ', response.data);
+                        if(response.data.error){
+                            var message = {statusText: response.data.message || 'Last.fm couldn\'t find the album', title:'Not Found'};
+                            return $q.reject(message);
                         }
-                        self.album = response.album;
+                        self.album = response.data.album;
                         self.mainimage = self.getImage(self.album, 'extralarge');
                         $ionicScrollDelegate.resize();
-                    }, function(reason) {
-                        $log.warn('Error ::: ', reason);
+                    })
+                    .catch(function(reason) {
                         Utilities.showDataError(reason)
                             .then(function(result) {
-                                  $state.go('home');
+                                  $state.go('artist', {artistname: self.artistname});
                             });
                     })
                     .finally(function(){

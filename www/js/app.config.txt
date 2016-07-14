@@ -1,0 +1,9 @@
+(function(){
+    'use strict';
+
+    angular
+        .module('ionicfm')
+        .config(function (LastFMProvider) {
+            LastFMProvider.setAPIKey(YOUR_API_KEY);
+        });
+}());

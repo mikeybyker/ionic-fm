@@ -1,0 +1,25 @@
+<div class="list api-input-list">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            Api Method:
+        </div>
+        <select ng-change="$ctrl.selectChange()"
+            ng-options="option.name group by option.group for option in $ctrl.apiMethods track by option.id"
+            ng-model="$ctrl.selectedOption">
+        </select>
+    </label>
+    <form name="form" novalidate>
+        <div class="item item-input-inset" ng-repeat="field in $ctrl.selectedOption.params">
+            <label class="item-input-wrapper state-label">
+                <input type="text" placeholder="{{field.label}}" ng-model="$ctrl.fields[field.id]" ng-required='field.required && !$ctrl.fields.mbid'>
+            </label>
+        </div>
+        <div class="item item-input-inset">
+            <button class="button button-balanced button-block" ng-click="$ctrl.callApi()" ng-disabled="!form.$valid">
+                {{$ctrl.selectedOption.name}}
+            </button>
+        </div>    
+    </form>
+    <!-- {{$ctrl.fields}} -->
+    <!-- {{$ctrl.selectedOption}} -->
+</div>

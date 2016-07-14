@@ -6,7 +6,8 @@
             'ionic',
             'ngResource',
             'sw.ionicfm',
-            'sw.common'
+            'sw.common',
+            'sw.lastfm'
         ])
 
         .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -17,28 +18,28 @@
                     url: '/',
                     templateUrl: 'views/home.html',
                     controller: 'HomeController',
-                    controllerAs: 'vc'
+                    controllerAs: '$ctrl'
                 })
 
                 .state('artist',{
                     url: '/artist/:artistname',
                     templateUrl: 'views/artist.html',
                     controller: 'ArtistController',
-                    controllerAs: 'vc'
+                    controllerAs: '$ctrl'
                 })
 
                 .state('album',{
                     url: '/artist/:artistname/album/:mbid',
                     templateUrl: 'views/album.html',
                     controller: 'AlbumController',
-                    controllerAs: 'vc'
+                    controllerAs: '$ctrl'
                 })
 
                 .state('api',{
                     url: '/api',
                     templateUrl: 'views/api.html',
                     controller: 'APIController',
-                    controllerAs: 'vc'
+                    controllerAs: '$ctrl'
                 });
 
             $urlRouterProvider.otherwise('/');

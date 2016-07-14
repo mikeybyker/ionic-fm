@@ -1,31 +1,31 @@
 <ion-view >
     <ion-nav-title>
-        {{vc.album.name}}
+        {{$ctrl.album.name}}
     </ion-nav-title>
     <ion-content class="padding">
-        <div ng-if="vc.album" class="list card">
+        <div ng-if="$ctrl.album" class="list card">
             <div class="item item-avatar">
-                <img ng-src="{{vc.getImage(vc.album, 'small')}}">
-                <h2>{{vc.artistname}} - {{vc.album.name}}</h2>
+                <img ng-src="{{$ctrl.getImage($ctrl.album, 'small')}}">
+                <h2>{{$ctrl.artistname}} - {{$ctrl.album.name}}</h2>
                 <h3>
-                    <strong>Listeners</strong>: {{vc.album.listeners}} -
-                    <strong>Play Count</strong>: {{vc.album.playcount}}
+                    <strong>Listeners</strong>: {{$ctrl.album.listeners}} -
+                    <strong>Play Count</strong>: {{$ctrl.album.playcount}}
                 </h3>
             </div>
             <div class="item item-body">
                 <div class="row responsive-md">
                     <div class="col">
-                        <a ng-href class="image-link" ng-click="vc.openLink(vc.album.url)">
-                            <img ng-src="{{vc.mainimage}}" alt="{{vc.artistname}}">
+                        <a ng-href class="image-link" ng-click="$ctrl.openLink($ctrl.album.url)">
+                            <img ng-src="{{$ctrl.mainimage}}" alt="{{$ctrl.artistname}}">
                         </a>
                     </div>
                     <div class="col">
-                        <h2 class="album-title">{{vc.album.name}}</h2>
+                        <h2 class="album-title">{{$ctrl.album.name}}</h2>
                         <ion-list>
                             <ion-item class="item-icon-left"
-                                ng-repeat="track in vc.album.tracks.track">
+                                ng-repeat="track in $ctrl.album.tracks.track">
                                 <i class="icon ion-arrow-right-b"></i>
-                                <a ng-href ng-click="vc.openLink(track.url)">{{ track.name }}</a> ({{vc.getDuration(track.duration)}})
+                                <a ng-href ng-click="$ctrl.openLink(track.url)">{{ track.name }}</a> ({{$ctrl.getDuration(track.duration)}})
                             </ion-item>
                         </ion-list>
                     </div>

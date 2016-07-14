@@ -1,52 +1,52 @@
 <ion-view>
     <ion-nav-title>
-        {{vc.artist.name}}
+        {{$ctrl.artist.name}}
     </ion-nav-title>
     <ion-content class="padding">
-        <div ng-if="vc.artist" class="list card">
+        <div ng-if="$ctrl.artist" class="list card">
             <div class="item item-avatar">
-                <img ng-src="{{vc.getImage(vc.artist, 'small')}}">
-                <h2>{{vc.artist.name}}</h2>
+                <img ng-src="{{$ctrl.getImage($ctrl.artist, 'small')}}">
+                <h2>{{$ctrl.artist.name}}</h2>
             </div>
 
             <div class="item item-body">
                 <div class="row responsive-md">
                     <div class="col">
-                        <a ng-href class="image-link" ng-click="vc.openLink(vc.artist.url)">
-                            <img ng-src="{{vc.mainimage}}" alt="{{vc.artist.name}}">
+                        <a ng-href class="image-link" ng-click="$ctrl.openLink($ctrl.artist.url)">
+                            <img ng-src="{{$ctrl.mainimage}}" alt="{{$ctrl.artist.name}}">
                         </a>
                     </div>
                     <div class="col">
-                        <p ng-bind-html="vc.artist.bio.summary"></p>
+                        <p ng-bind-html="$ctrl.artist.bio.summary"></p>
                     </div>
                 </div>
                 <dl>
                     <dt>
                         <strong>Listeners</strong>
                     </dt>
-                    <dd>{{vc.artist.stats.listeners}}</dd>
+                    <dd>{{$ctrl.artist.stats.listeners}}</dd>
                     <dt>
                         <strong>Play Count </strong>
                     </dt>
-                    <dd>{{vc.artist.stats.playcount}}</dd>
+                    <dd>{{$ctrl.artist.stats.playcount}}</dd>
                 </dl>
             </div>
         </div>
         <h2 class="title">Popular Albums</h2>
         <ion-list>
-            <ion-item class="item-thumbnail-left item-icon-right" ng-click="vc.getAlbum(album)"
-                ng-repeat="album in vc.albums">
-                <img ng-src="{{::vc.getImage(album, 'large')}}">
+            <ion-item class="item-thumbnail-left item-icon-right" ng-click="$ctrl.getAlbum(album)"
+                ng-repeat="album in $ctrl.albums">
+                <img ng-src="{{::$ctrl.getImage(album, 'large')}}">
                 <h2>{{album.name}}</h2>
-                <i class="icon ion-arrow-right-b"></i>
+                <i class="icon ion-arrow-right-b" ng-if="album.mbid"></i>
             </ion-item>
         </ion-list>
 
         <h2 class="title">Similar Artists</h2>
         <ion-list>
-            <ion-item class="item-thumbnail-left item-icon-right" ng-click="vc.selectArtist(artist)"
-                ng-repeat="artist in vc.artist.similar.artist | limitTo:4">
-                <img ng-src="{{::vc.getImage(artist, 'large')}}">
+            <ion-item class="item-thumbnail-left item-icon-right" ng-click="$ctrl.selectArtist(artist)"
+                ng-repeat="artist in $ctrl.artist.similar.artist | limitTo:4">
+                <img ng-src="{{::$ctrl.getImage(artist, 'large')}}">
                 <h2>{{artist.name}}</h2>
                 <i class="icon ion-arrow-right-b"></i>
             </ion-item>

@@ -1,18 +1,18 @@
-<ion-view view-title="Home" hide-back-button="{{vc.hideBack}}">
+<ion-view view-title="Home" hide-back-button="{{$ctrl.hideBack}}">
     <ion-content class="padding">
         <div class="list">
             <label class="item item-input item-floating-label">
                 <span class="input-label">Artist</span>
-                <input type="text" ng-model="vc.user.artist" placeholder="Artist">
+                <input type="text" ng-model="$ctrl.user.artist" placeholder="Artist">
             </label>
         </div>
-        <button class="button button-block button-positive" ng-click="vc.doSearch()">
+        <button class="button button-block button-positive" ng-click="$ctrl.doSearch()">
             Search
         </button>
         <ion-list>
             <ion-item class="item-thumbnail-left" href="#/artist/{{artist.name}}"
-                ng-repeat="artist in vc.potentials">
-                <img ng-src="{{::vc.getImage(artist, 'small')}}">
+                ng-repeat="artist in $ctrl.potentials">
+                <img ng-src="{{::$ctrl.getImage(artist, 'small')}}">
                 <h2>{{artist.name}}</h2>
             </ion-item>
         </ion-list>

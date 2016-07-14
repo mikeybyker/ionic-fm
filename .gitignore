@@ -4,6 +4,6 @@
 node_modules/
 platforms/
 plugins/
-constants.js
+app.config.js
 keys.txt
 cleaner.bat
