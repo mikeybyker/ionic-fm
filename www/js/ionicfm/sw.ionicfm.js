@@ -2,7 +2,6 @@
     'use strict';
     
     angular
-        .module('sw.ionicfm', [
-            
-        ]);
+        .module('sw.ionicfm', []);
+        
 }());
