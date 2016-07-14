@@ -7,11 +7,11 @@
 
     function AlbumController ($state, $log, $q, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
 
+        var $ctrl = this;
+
         this.artistname = $state.params.artistname;
         this.albumId = $state.params.mbid;
-        this.album = {};
-
-        var self = this;
+        this.album = {};        
 
         if(this.albumId){
             $ionicLoading.show({
@@ -25,14 +25,14 @@
                         var message = {statusText: response.data.message || 'Last.fm couldn\'t find the album', title:'Not Found'};
                         return $q.reject(message);
                     }
-                    self.album = response.data.album;
-                    self.mainimage = self.getImage(self.album, 'extralarge');
+                    $ctrl.album = response.data.album;
+                    $ctrl.mainimage = $ctrl.getImage($ctrl.album, 'extralarge');
                     $ionicScrollDelegate.resize();
                 })
                 .catch(function(reason) {
                     Utilities.showDataError(reason)
                         .then(function(result) {
-                              $state.go('artist', {artistname: self.artistname});
+                              $state.go('artist', {artistname: $ctrl.artistname});
                         });
                 })
                 .finally(function(){

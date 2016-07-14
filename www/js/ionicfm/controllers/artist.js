@@ -7,6 +7,8 @@
 
     function ArtistController($state, $log, $q, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
 
+        var $ctrl = this;
+
         this.artistname = $state.params.artistname;
         this.artist = {};
         this.albums = [];
@@ -17,9 +19,8 @@
                 template: '<p>Loading...</p><ion-spinner></ion-spinner>'
             });
 
-            var self = this,
-                info = LastFM.Artist.artist(this.artistname, '', {}),
-                albums = LastFM.Artist.albums(this.artistname, '', {limit: 6});
+            var info = LastFM.Artist.artist(this.artistname, '', {}),
+            albums = LastFM.Artist.albums(this.artistname, '', {limit: 6});
 
             $q.all([info, albums])
                 .then(function(response) {
@@ -28,9 +29,9 @@
                         var message = {statusText: response.message || 'Bad data returned, sorry.', title:'Data Error'};
                         return $q.reject(message);
                     }
-                    self.artist = response[0].data.artist;
-                    self.albums = response[1].data.topalbums.album;
-                    self.mainimage = Utilities.getImage(self.artist, 'extralarge');
+                    $ctrl.artist = response[0].data.artist;
+                    $ctrl.albums = response[1].data.topalbums.album;
+                    $ctrl.mainimage = Utilities.getImage($ctrl.artist, 'extralarge');
                     $ionicScrollDelegate.resize();
                 })
                 .catch(function(reason) {

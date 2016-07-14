@@ -46,13 +46,13 @@
 
 // Or could $watch the selectedOption : probably overkill
 /*
-var unwatch = $scope.$watch(function () {
-   return $ctrl.selectedOption;
-},function(newValue, oldValue){
-    if(newValue.id !== oldValue.id){
-        $ctrl.fields = {};
-    }
-});
+    var unwatch = $scope.$watch(function () {
+       return $ctrl.selectedOption;
+    },function(newValue, oldValue){
+        if(newValue.id !== oldValue.id){
+            $ctrl.fields = {};
+        }
+    });
 */
 
 /*
@@ -61,16 +61,4 @@ var unwatch = $scope.$watch(function () {
         $log.info('tester component destroyed ');
         unwatch();
     };
-*/
-
-/*
-// Used when the select box was outside of this component
-this.$onChanges = function (changesObj) {
-    // $log.info('Current id ::: ', changesObj.data.currentValue.id);
-    // $log.info('Previous id ::: ', changesObj.data.previousValue.id);
-    // if (changesObj.data.currentValue.id !== changesObj.data.previousValue.id) {
-    //     // changed data - wipe values
-    //     $ctrl.fields = {};
-    // }
-};
 */

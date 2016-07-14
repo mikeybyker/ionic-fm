@@ -7,16 +7,17 @@
 
     function HomeController($state, $log, $ionicLoading, Utilities, LastFM) {
 
+        var $ctrl = this;
+
         this.hideBack = true;
         this.master = {artist: 'The Cure'};
-        this.potentials = [];
+        this.potentials = [];        
 
         this.reset = function() {
             this.user = angular.copy(this.master);
         };
 
         this.doSearch = function() {
-            var self = this;
             this.master = angular.copy(this.user);
             if(!this.master.artist){
                 return;
@@ -26,7 +27,7 @@
             });
             LastFM.Artist.search(this.master.artist, {limit:5})
                 .then(function(response) {
-                    self.potentials = response.data.results.artistmatches.artist;
+                    $ctrl.potentials = response.data.results.artistmatches.artist;
                 }, function(reason) {
                     // $log.info('Error ::: ', reason);
                     Utilities.showDataError(reason);

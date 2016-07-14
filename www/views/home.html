@@ -10,12 +10,12 @@
             Search
         </button>
         <ion-list>
-            <ion-item class="item-thumbnail-left" href="#/artist/{{artist.name}}"
+            <ion-item class="item-thumbnail-left" ui-sref="artist({ artistname: artist.name})"
                 ng-repeat="artist in $ctrl.potentials">
                 <img ng-src="{{::$ctrl.getImage(artist, 'small')}}">
                 <h2>{{artist.name}}</h2>
             </ion-item>
         </ion-list>
-        <a class="button button-assertive" ui-sref="api">API</a>
+        <a class="button button-assertive" ui-sref="api">Test API</a>
     </ion-content>
 </ion-view>

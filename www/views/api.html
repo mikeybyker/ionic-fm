@@ -5,11 +5,9 @@
     <ion-content class="padding">
         <div class="row">
             <div class="col col-33">
-                <div class="card">
-                    
+                <div class="card">                   
 
-                        <api-input api-methods="$ctrl.apiMethods" on-call="$ctrl.apiCall(data, params)"></api-input>
-
+                    <api-input api-methods="$ctrl.apiMethods" on-call="$ctrl.apiCall(data, params)"></api-input>
                     
                 </div>
             </div>
@@ -22,29 +20,3 @@
 
     </ion-content>
 </ion-view>
-
-<!--
-
-<div class="item item-input-inset">
-    <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="text" placeholder="Search Album Name" ng-model="$ctrl.albumName1">
-    </label>
-    <button class="button button-small button-royal"
-        ng-click="$ctrl.apiCallDirect(1, $ctrl.albumName1)" ng-disabled="!$ctrl.albumName1">
-        Go
-    </button>
-</div>
-
-<div class="item item-input-inset">
-    <label class="item-input-wrapper">
-        <i class="icon ion-ios-search placeholder-icon"></i>
-        <input type="text" placeholder="Top Tags" ng-model="$ctrl.albumName2">
-    </label>
-    <button class="button button-small button-royal"
-        ng-click="$ctrl.apiCallDirect(2, 'The Cure', 'Disintegration', '')" >
-        Go
-    </button>
-</div>
-
--->

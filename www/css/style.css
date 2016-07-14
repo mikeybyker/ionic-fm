@@ -46,10 +46,9 @@ h2.album-title
     width: 100%;
 }
 
-
 .item-input-inset .item-input-wrapper input.ng-valid[required]
 {
-    border-left: 5px solid #42A948; /* green */
+    border-left: 5px solid #42A948;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     padding-left: 5px;
@@ -57,7 +56,7 @@ h2.album-title
 
 .item-input-inset .item-input-wrapper input.ng-invalid
 {
-    border-left: 5px solid #a94442; /* red */
+    border-left: 5px solid #a94442;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     padding-left: 5px;
