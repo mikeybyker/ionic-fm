@@ -3,13 +3,12 @@
 
     angular
         .module('sw.ionicfm')
-        .controller('ArtistController', function ($state, $log, $q, $ionicConfig, $ionicLoading, $ionicHistory, $ionicScrollDelegate, LastFM, Utilities) {
+        .controller('ArtistController', function ($state, $log, $q, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
 
             this.artistname = $state.params.artistname;
             this.artist = {};
             this.albums = [];
             this.mainimage = '';
-            // $ionicConfig.backButton.text('Search');
 
             if(this.artistname){
                 $ionicLoading.show({
@@ -22,7 +21,7 @@
 
                 $q.all([info, albums])
                     .then(function(response) {
-                        $log.info('LastFM.Artist.artist > response ::: ', response);
+                        // $log.info('LastFM.Artist.artist > response ::: ', response);
                         if(!response[0].data.artist || !response[1].data.topalbums){
                             var message = {statusText: response.message || 'Bad data returned, sorry.', title:'Data Error'};
                             return $q.reject(message);
@@ -35,7 +34,7 @@
                     .catch(function(reason) {
                         Utilities.showDataError(reason)
                             .then(function(result) {
-                                 // $state.go('home');
+                                $state.go('home');
                             });
                     })
                     .finally(function(){

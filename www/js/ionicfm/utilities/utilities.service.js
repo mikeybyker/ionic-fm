@@ -3,7 +3,7 @@
     
     angular
         .module('sw.ionicfm')
-        .factory('Utilities', function ($log, $ionicModal, appModalService) {
+        .factory('Utilities', function ($log, ModalService) {
 
             var placeholder = 'http://placehold.it/174x174';
 
@@ -39,7 +39,7 @@
                     var params = angular.extend(
                                 {title:'Error', body:'Sorry, there has been an error.'},
                                 message || {});
-                    return appModalService.show('error-modal.html', 'AlertController as vm', params);
+                    return ModalService.show('error-modal.html', 'AlertController as vm', params);
                 }
             }
 

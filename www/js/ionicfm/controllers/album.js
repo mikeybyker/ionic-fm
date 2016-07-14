@@ -3,7 +3,7 @@
 
     angular
         .module('sw.ionicfm')
-        .controller('AlbumController', function ($state, $log, $q, $ionicConfig, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities, appModalService) {
+        .controller('AlbumController', function ($state, $log, $q, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
 
             this.artistname = $state.params.artistname;
             this.albumId = $state.params.mbid;
@@ -19,7 +19,7 @@
 
                 LastFM.Album.albumById(this.albumId, {})
                     .then(function(response) {
-                        $log.info('LastFM.Album.albumById > response.data ::: ', response.data);
+                        // $log.info('LastFM.Album.albumById > response.data ::: ', response.data);
                         if(response.data.error){
                             var message = {statusText: response.data.message || 'Last.fm couldn\'t find the album', title:'Not Found'};
                             return $q.reject(message);

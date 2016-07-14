@@ -2,14 +2,12 @@
 (function () {
     'use strict';
 
-    var serviceId = 'appModalService';
-
     angular
         .module('sw.ionicfm')
         .controller('AlertController', AlertController)
-        .factory(serviceId, appModalService);
+        .factory('ModalService', ModalService);
 
-    function appModalService($ionicModal, $rootScope, $q, $injector, $controller) {
+    function ModalService($ionicModal, $rootScope, $q, $injector, $controller) {
 
         return {
             show: show
