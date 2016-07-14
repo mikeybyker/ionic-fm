@@ -5,7 +5,6 @@
         .module('ionicfm', [
             'ionic',
             'sw.ionicfm',
-            'sw.common',
             'sw.lastfm'
         ])
 

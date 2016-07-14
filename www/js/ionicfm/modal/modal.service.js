@@ -4,10 +4,10 @@
 
     var serviceId = 'appModalService';
 
-    angular.module('sw.common')
-        .factory(serviceId, [
-            '$ionicModal', '$rootScope', '$q', '$injector', '$controller', appModalService
-        ]);
+    angular
+        .module('sw.ionicfm')
+        .controller('AlertController', AlertController)
+        .factory(serviceId, appModalService);
 
     function appModalService($ionicModal, $rootScope, $q, $injector, $controller) {
 
@@ -87,7 +87,15 @@
 
             return result;
         }
-
-
     } // end
+
+    function AlertController($scope, parameters) {
+        this.message = parameters;
+        this.confirm = function(message){
+            $scope.closeModal(message);
+        };
+        this.cancel = function(){
+            $scope.closeModal(null);
+        };
+    }
 })();

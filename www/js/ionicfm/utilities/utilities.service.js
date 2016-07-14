@@ -1,7 +1,8 @@
 (function(){
     'use strict';
     
-    angular.module('sw.common')
+    angular
+        .module('sw.ionicfm')
         .factory('Utilities', function ($log, $ionicModal, appModalService) {
 
             var placeholder = 'http://placehold.it/174x174';
@@ -38,7 +39,7 @@
                     var params = angular.extend(
                                 {title:'Error', body:'Sorry, there has been an error.'},
                                 message || {});
-                    return appModalService.show('error-modal.html', 'AlertCtrl as vm', params);
+                    return appModalService.show('error-modal.html', 'AlertController as vm', params);
                 }
             }
 

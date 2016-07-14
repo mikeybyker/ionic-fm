@@ -56,8 +56,8 @@
                     settings = {
                             artist: artist,
                             method: 'artist.search'
-                            // limit: 8,
-                            // autocorrect: 0
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -70,7 +70,7 @@
                             artist: artist,
                             mbid: mbid,
                             method: 'artist.getinfo'
-                            // autocorrect: 1
+                            // autocorrect: 1,
                             // lang: 'de'
                     };
                 params = getParams(settings, options);
@@ -84,7 +84,9 @@
                             artist: artist,
                             mbid: mbid,
                             method: 'artist.gettopalbums'
-                            // limit: 10
+                            // limit: 10,
+                            // autocorrect: 1,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -97,7 +99,9 @@
                             artist: artist,
                             mbid: mbid,
                             method: 'artist.gettoptracks'
-                            // limit: 10
+                            // limit: 10,
+                            // autocorrect: 1,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -110,6 +114,8 @@
                             artist: artist,
                             mbid: mbid,
                             method: 'artist.getsimilar'
+                            // limit: 10,
+                            // autocorrect: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -122,6 +128,7 @@
                             artist: artist,
                             mbid: mbid,
                             method: 'artist.gettoptags'
+                            // autocorrect: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -137,7 +144,9 @@
                             artist: artist,
                             album: album,
                             mbid: mbid || '',
-                            method: 'album.getInfo'
+                            method: 'album.getinfo'
+                            // autocorrect: 1,
+                            // lang: 'de'
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -153,7 +162,8 @@
                     settings = {
                             album: album,
                             method: 'album.search'
-                            // limit: 10
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -172,6 +182,7 @@
                             mbid :mbid || '',
                             album :album,
                             artist :artist
+                            // autocorrect: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -184,6 +195,8 @@
                     settings = {
                             track: track,
                             method: 'track.search'
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -210,7 +223,8 @@
                             track: track,
                             mbid: mbid || '',
                             method: 'track.getsimilar'
-                            // autocorrect: 1
+                            // autocorrect: 1,
+                            // limit: 10
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -237,7 +251,8 @@
                 var params,
                     settings = {
                             method: 'chart.gettopartists'
-                            // limit: 10
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -248,7 +263,8 @@
                 var params,
                     settings = {
                             method: 'chart.gettoptracks'
-                            // limit: 10
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -259,7 +275,8 @@
                 var params,
                     settings = {
                             method: 'chart.gettoptags'
-                            // limit: 10
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -273,7 +290,8 @@
                     settings = {
                             country: country,
                             method: 'geo.gettopartists'
-                            // limit: 10
+                            // limit: 10,
+                            // page: 1
                     };
                 params = getParams(settings, options);
                 return get(params);
@@ -285,7 +303,9 @@
                     settings = {
                             country: country,
                             method: 'geo.gettoptracks'
-                            // limit: 10
+                            // limit: 10,
+                            // page: 1,
+                            // location: 'Manchester'
                     };
                 params = getParams(settings, options);
                 return get(params);
