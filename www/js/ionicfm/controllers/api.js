@@ -5,7 +5,7 @@
         .module('sw.ionicfm')
         .controller('APIController', APIController);
 
-    function APIController($log, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
+    function APIController($log, $ionicLoading, $ionicScrollDelegate, LastFM) {
         
         var $ctrl = this;
 
@@ -115,13 +115,13 @@
                             ]
             },
             {
-                id: 61, fn : getTopTracks, name: 'Get Top Tracks', group:'Charts',
+                id: 61, fn : getChartsTopTracks, name: 'Get Top Tracks', group:'Charts',
                     params:[
                             
                             ]
             },
             {
-                id: 62, fn : getTopTags, name: 'Get Top Tags', group:'Charts',
+                id: 62, fn : getChartsTopTags, name: 'Get Top Tags', group:'Charts',
                     params:[
                             
                             ]
@@ -138,7 +138,7 @@
                     params:[
                             {id: 'country', label:'Country (United Kingdom, Iceland)', required: true}
                             ]
-            },
+            }
         ];
 
         $ctrl.apiCall = function(data, params){
@@ -156,7 +156,7 @@
                 })
                 .catch(function(reason) {
                     $log.warn('Error ::: ', reason);
-                    $ctrl.output = reason.statusTest || 'Error';
+                    $ctrl.output = reason.statusText || 'Error';
                 })
                 .finally(function(){
                     $ionicLoading.hide();
@@ -264,13 +264,13 @@
                     return response.data.artists;
                 });
         }
-        function getTopTracks(){
+        function getChartsTopTracks(){
             return LastFM.Charts.topTracks({limit:2})
                 .then(function(response) {
                     return response.data.tracks;
                 });
         }
-        function getTopTags(){
+        function getChartsTopTags(){
             return LastFM.Charts.topTags({limit:2})
                 .then(function(response) {
                     return response.data.tags;

@@ -7,22 +7,31 @@
 
     function LastFM(){
 
-        var config = {};
-        config.api_key = null;
-        config.format = 'json';
-        var endPoint = 'http://ws.audioscrobbler.com/2.0/';
+        var endPoint = 'http://ws.audioscrobbler.com/2.0/',
+            that = this,
+            config = {api_key: null, format: 'json'};       
 
         this.setAPIKey = function (key) {
             config.api_key = key;
+            return config.api_key;
+        };
+        this.getAPIKey = function () {
+            return config.api_key;
         };
         this.setFormat = function (format) {
             config.format = format;
+            return config.format;
+        };
+        this.getFormat = function () {
+            return config.format;
         };
         this.setEndPoint = function (url) {
             endPoint = url;
+            return endPoint;
         };
-
-        var that = this;
+        this.getEndPoint = function () {
+            return endPoint;
+        };
 
         this.$get = function($q, $http){
                 
@@ -39,7 +48,7 @@
 
             function getParams(settings, options){
                 return  angular.extend(
-                            {},             // So we don't polute the objects
+                            {},             // So we don't pollute the objects
                             config,         // api_key and format
                             settings,       // method etc.
                             options || {}   // user options
@@ -323,12 +332,12 @@
 
             LastFMService.prototype = {
                 Artist: {
-                    search:     searchArtists,
-                    artist:     getArtistInfo,
                     albums:     getTopAlbums,
-                    tracks:     getTopTracks,
+                    artist:     getArtistInfo,
+                    search:     searchArtists,
                     similar:    getSimilar,
-                    topTags:    getArtistTopTags
+                    topTags:    getArtistTopTags,
+                    tracks:     getTopTracks
                 },
                 Album: {
                     album:      getAlbumInfo,
@@ -338,14 +347,14 @@
                 },
                 Track: {
                     search:     searchTrack,
-                    track:      getTrackInfo,
                     similar:    getSimilarTrack,
-                    topTags:    getTrackTopTags                    
+                    topTags:    getTrackTopTags, 
+                    track:      getTrackInfo                   
                 },
                 Charts: {
                     topArtists: getTopArtists,
-                    topTracks:  getChartsTopTracks,
-                    topTags:    getChartsTopTags                 
+                    topTags:    getChartsTopTags, 
+                    topTracks:  getChartsTopTracks                
                 },
                 Geo : {
                     topArtists: getTopGeoArtists,
