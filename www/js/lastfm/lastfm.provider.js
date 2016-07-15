@@ -259,7 +259,7 @@
             }
 
             // Docs: http://www.last.fm/api/show/chart.getTopTracks
-            function getTopTracks(options){
+            function getChartsTopTracks(options){
                 var params,
                     settings = {
                             method: 'chart.gettoptracks'
@@ -271,7 +271,7 @@
             }
 
             // Docs: http://www.last.fm/api/show/chart.getTopTags
-            function getTopTags(options){
+            function getChartsTopTags(options){
                 var params,
                     settings = {
                             method: 'chart.gettoptags'
@@ -344,8 +344,8 @@
                 },
                 Charts: {
                     topArtists: getTopArtists,
-                    topTracks:  getTopTracks,
-                    topTags:    getTopTags                 
+                    topTracks:  getChartsTopTracks,
+                    topTags:    getChartsTopTags                 
                 },
                 Geo : {
                     topArtists: getTopGeoArtists,
