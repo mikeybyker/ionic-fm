@@ -3,9 +3,9 @@
 
     angular
         .module('sw.ionicfm')
-        .controller('APIController', APIController);
+        .controller('ExplorerController', ExplorerController);
 
-    function APIController($log, $ionicLoading, $ionicScrollDelegate, LastFM) {
+    function ExplorerController($log, $ionicLoading, $ionicScrollDelegate, LastFM) {
         
         var $ctrl = this;
 

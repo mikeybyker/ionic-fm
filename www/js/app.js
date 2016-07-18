@@ -33,10 +33,10 @@
                     controllerAs: '$ctrl'
                 })
 
-                .state('api',{
-                    url: '/api',
-                    templateUrl: 'views/api.html',
-                    controller: 'APIController',
+                .state('explorer',{
+                    url: '/explorer',
+                    templateUrl: 'views/explorer.html',
+                    controller: 'ExplorerController',
                     controllerAs: '$ctrl'
                 });
 

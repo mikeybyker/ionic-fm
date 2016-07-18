@@ -38,7 +38,7 @@
                     $ctrl.fields = {};
                 }
             },
-            templateUrl: 'js/components/api-input/api-input.html'
+            templateUrl: 'js/explorer/api-input.html'
         });
 
 })();
