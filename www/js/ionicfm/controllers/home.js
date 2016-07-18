@@ -11,7 +11,8 @@
 
         this.hideBack = true;
         this.master = {artist: 'The Cure'};
-        this.potentials = [];        
+        this.potentials = [];
+        this.getImage = Utilities.getImage;       
 
         this.reset = function() {
             this.user = angular.copy(this.master);
@@ -26,19 +27,17 @@
                 template: '<p>Loading...</p><ion-spinner></ion-spinner>'
             });
             LastFM.Artist.search(this.master.artist, {limit:5})
-                .then(function(response) {
-                    $ctrl.potentials = response.data.results.artistmatches.artist;
-                }, function(reason) {
-                    // $log.info('Error ::: ', reason);
+                .then(function(results) {
+                    $ctrl.potentials = results;
+                })
+                .catch(function(reason) {
+                    $log.warn('Error ::: ', reason);
                     Utilities.showDataError(reason);
                 })
                 .finally(function(){
                     $ionicLoading.hide();
                 });
         };
-        this.getImage = function(artist, size){
-            return Utilities.getImage(artist, size);
-        }
 
         this.reset();
 

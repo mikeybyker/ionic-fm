@@ -33,8 +33,8 @@
             },
             showDataError :function(reason){
                 return this.showAlert({
-                                        body:reason.statusText || 'Bit of a problem loading data...Sorry.',
-                                        title: reason.title || 'Server Error'
+                                        body: reason.statusText || 'Bit of a problem loading data...Sorry.',
+                                        title: reason.title || 'Error'
                                     });
             },
             showAlert :function(message){

@@ -13,6 +13,8 @@
         this.artist = {};
         this.albums = [];
         this.mainimage = '';
+        this.getImage = Utilities.getImage;
+        this.openLink = Utilities.openLink;
 
         if(this.artistname){
             $ionicLoading.show({
@@ -20,17 +22,17 @@
             });
 
             var info = LastFM.Artist.artist(this.artistname, '', {}),
-            albums = LastFM.Artist.albums(this.artistname, '', {limit: 6});
+                albums = LastFM.Artist.albums(this.artistname, '', {limit: 6});
 
             $q.all([info, albums])
                 .then(function(response) {
-                    // $log.info('LastFM.Artist.artist > response ::: ', response);
-                    if(!response[0].data.artist || !response[1].data.topalbums){
+                    $log.info('LastFM.Artist.artist > response ::: ', response);
+                    if(!response[0] || !response[1]){
                         var message = {statusText: response.message || 'Bad data returned, sorry.', title:'Data Error'};
                         return $q.reject(message);
                     }
-                    $ctrl.artist = response[0].data.artist;
-                    $ctrl.albums = response[1].data.topalbums.album;
+                    $ctrl.artist = response[0];
+                    $ctrl.albums = response[1];
                     $ctrl.mainimage = Utilities.getImage($ctrl.artist, 'extralarge');
                     $ionicScrollDelegate.resize();
                 })
@@ -61,13 +63,7 @@
             }
         };
 
-        this.getImage = function(artist, size){
-            return Utilities.getImage(artist, size);
-        };
-
-        this.openLink = function(url){
-            Utilities.openLink(url);
-        };
+        
     }
 
 }());
