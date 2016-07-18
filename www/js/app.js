@@ -13,28 +13,28 @@
 
                 .state('home',{
                     url: '/',
-                    templateUrl: 'views/home.html',
+                    templateUrl: 'js/home/home.html',
                     controller: 'HomeController',
                     controllerAs: '$ctrl'
                 })
 
                 .state('artist',{
                     url: '/artist/:artistname',
-                    templateUrl: 'views/artist.html',
+                    templateUrl: 'js/artist/artist.html',
                     controller: 'ArtistController',
                     controllerAs: '$ctrl'
                 })
 
                 .state('album',{
                     url: '/artist/:artistname/album/:mbid',
-                    templateUrl: 'views/album.html',
+                    templateUrl: 'js/album/album.html',
                     controller: 'AlbumController',
                     controllerAs: '$ctrl'
                 })
 
                 .state('explorer',{
                     url: '/explorer',
-                    templateUrl: 'views/explorer.html',
+                    templateUrl: 'js/explorer/explorer.html',
                     controller: 'ExplorerController',
                     controllerAs: '$ctrl'
                 });
