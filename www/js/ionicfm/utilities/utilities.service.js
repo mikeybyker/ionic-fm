@@ -5,7 +5,7 @@
         .module('sw.ionicfm')
         .factory('Utilities', Utilities);
 
-    function Utilities($log, ModalService) {
+    function Utilities($log, ModalService, $ionicLoading) {
 
         var placeholder = 'http://placehold.it/174x174';
 
@@ -42,6 +42,16 @@
                             {title:'Error', body:'Sorry, there has been an error.'},
                             message || {});
                 return ModalService.show('error-modal.html', 'AlertController as vm', params);
+            },
+            loadIndicator: {
+                show: function(){
+                    $ionicLoading.show({
+                        template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+                    });
+                },
+                hide: function(){
+                    $ionicLoading.hide();
+                }
             }
         }
 

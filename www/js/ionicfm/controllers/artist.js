@@ -5,7 +5,7 @@
         .module('sw.ionicfm')
         .controller('ArtistController', ArtistController);
 
-    function ArtistController($state, $log, $q, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
+    function ArtistController($state, $log, $q, $ionicScrollDelegate, LastFM, Utilities) {
 
         var $ctrl = this;
 
@@ -17,9 +17,8 @@
         this.openLink = Utilities.openLink;
 
         if(this.artistname){
-            $ionicLoading.show({
-                template: '<p>Loading...</p><ion-spinner></ion-spinner>'
-            });
+            
+            Utilities.loadIndicator.show();
 
             var info = LastFM.Artist.artist(this.artistname, '', {}),
                 albums = LastFM.Artist.albums(this.artistname, '', {limit: 6});
@@ -43,7 +42,7 @@
                         });
                 })
                 .finally(function(){
-                    $ionicLoading.hide();
+                    Utilities.loadIndicator.hide();
                 });
         };
 

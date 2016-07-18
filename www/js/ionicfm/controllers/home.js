@@ -5,7 +5,7 @@
         .module('sw.ionicfm')
         .controller('HomeController', HomeController);
 
-    function HomeController($state, $log, $ionicLoading, Utilities, LastFM) {
+    function HomeController($state, $log, Utilities, LastFM) {
 
         var $ctrl = this;
 
@@ -23,9 +23,9 @@
             if(!this.master.artist){
                 return;
             }
-            $ionicLoading.show({
-                template: '<p>Loading...</p><ion-spinner></ion-spinner>'
-            });
+
+            Utilities.loadIndicator.show();
+
             LastFM.Artist.search(this.master.artist, {limit:5})
                 .then(function(results) {
                     $ctrl.potentials = results;
@@ -35,7 +35,7 @@
                     Utilities.showDataError(reason);
                 })
                 .finally(function(){
-                    $ionicLoading.hide();
+                    Utilities.loadIndicator.hide();
                 });
         };
 

@@ -5,7 +5,7 @@
         .module('sw.ionicfm')
         .controller('AlbumController', AlbumController);
 
-    function AlbumController ($state, $log, $q, $ionicLoading, $ionicScrollDelegate, LastFM, Utilities) {
+    function AlbumController ($state, $log, $ionicScrollDelegate, LastFM, Utilities) {
 
         var $ctrl = this;
 
@@ -17,9 +17,8 @@
         this.openLink = Utilities.openLink;      
 
         if(this.albumId){
-            $ionicLoading.show({
-                template: '<p>Loading...</p><ion-spinner></ion-spinner>'
-            });
+            
+            Utilities.loadIndicator.show();
 
             LastFM.Album.albumById(this.albumId, {})
                 .then(function(response) {
@@ -35,7 +34,7 @@
                         });
                 })
                 .finally(function(){
-                    $ionicLoading.hide();
+                    Utilities.loadIndicator.hide();
                 });
         }
         
