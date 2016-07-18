@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sw.ionicfm')
+        .module('ionicfm')
         .component('apiInput', {
             bindings:{
                 apiMethods: '<',

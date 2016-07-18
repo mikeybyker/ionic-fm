@@ -2,7 +2,7 @@
     'use strict';
     
     angular
-        .module('sw.ionicfm')
+        .module('ionicfm')
         .factory('Utilities', Utilities);
 
     function Utilities($log, ModalService, $ionicLoading) {

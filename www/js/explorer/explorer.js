@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sw.ionicfm')
+        .module('ionicfm')
         .controller('ExplorerController', ExplorerController);
 
     function ExplorerController($log, $ionicLoading, $ionicScrollDelegate, LastFM) {

@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('sw.ionicfm')
+        .module('ionicfm')
         .controller('AlertController', AlertController)
         .factory('ModalService', ModalService);
 

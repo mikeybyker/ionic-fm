@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sw.ionicfm')
+        .module('ionicfm')
         .controller('AlbumController', AlbumController);
 
     function AlbumController ($state, $log, $ionicScrollDelegate, LastFM, Utilities) {

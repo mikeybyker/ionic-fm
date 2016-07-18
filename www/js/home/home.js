@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sw.ionicfm')
+        .module('ionicfm')
         .controller('HomeController', HomeController);
 
     function HomeController($state, $log, Utilities, LastFM) {
