@@ -20,7 +20,7 @@
             
             Utilities.loadIndicator.show();
 
-            LastFM.Album.albumById(this.albumId, {})
+            LastFM.Album.album(this.albumId, {})
                 .then(function(response) {
                     // $log.info('LastFM.Album.albumById > response.data ::: ', response.data);
                     $ctrl.album = response;
