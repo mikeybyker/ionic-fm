@@ -10,9 +10,29 @@
     </label>
     <form name="form" novalidate>
         <div class="item item-input-inset" ng-repeat="field in $ctrl.selectedOption.params">
-            <label class="item-input-wrapper state-label">
-                <input type="text" placeholder="{{field.label}}" ng-model="$ctrl.fields[field.id]" ng-required='field.required && !$ctrl.fields.mbid'>
-            </label>
+
+            <div ng-switch="field.id">
+                <div ng-switch-when="mbid">
+                    <label class="item-input-wrapper state-label">
+                        <input type="text" placeholder="{{field.label}}" ng-model="$ctrl.fields[field.id]" ng-required='field.required' mbid>
+                    </label>
+
+                </div>
+                <div ng-switch-when="artistOrMbid">
+                    <label class="item-input-wrapper state-label">
+                        <input type="text" placeholder="{{field.label}}" ng-model="$ctrl.fields[field.id]" ng-required='field.required' ng-change="field.id === 'artistOrMbid' && $ctrl.change($ctrl.fields[field.id])" ng-model-options="{debounce: {updateOn: 'default blur', 'default': 400, 'blur': 0 }}">
+                    </label>
+                    <label class="state-label" ng-if="$ctrl.validMbid">
+                        Valid mbid format
+                    </label>
+                </div>
+                <div ng-switch-default>
+                    <label class="item-input-wrapper state-label">
+                        <input type="text" placeholder="{{field.label}}" ng-model="$ctrl.fields[field.id]" ng-required='field.required && !$ctrl.validMbid'>
+                    </label>
+                </div>
+            </div>
+            
         </div>
         <div class="item item-input-inset">
             <button class="button button-balanced button-block" ng-click="$ctrl.callApi()" ng-disabled="!form.$valid">

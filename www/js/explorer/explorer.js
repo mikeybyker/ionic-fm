@@ -16,71 +16,115 @@
             {
                 id: 1, fn : getAlbumInfo, name: 'Get Info', group:'Album',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'albumName', label:'Album Name', required: true},
-                            {id: 'mbid', label:'Mbid', required: false}
+                            {id: 'artistOrMbid', label:'Artist Name Or mbid', required: true, default:'91fa2331-d8b4-4d1f-aa4d-53b1c54853e5'},
+                            {id: 'albumName', label:'Album Name', required: true}
                             ]
             },
             {
-                id: 2, fn : getAlbumInfoById, name: 'Get Info by mbid', group:'Album', 
+                id: 2, fn : _getAlbumInfo, name: 'Get Info - Full', group:'Album',
                     params:[
-                            {id: 'mbid', label:'Mbid', required: true}
+                            {id: 'artistOrMbid', label:'Artist Name Or mbid', required: true},
+                            {id: 'albumName', label:'Album Name', required: true}
                             ]
             },
             {
-                id: 4, fn : searchAlbum, name: 'Search by Album', group:'Album',
+                id: 5, fn : searchAlbum, name: 'Search by Album', group:'Album',
                     params:[
                             {id: 'albumName', label:'Album Name', required: true}
                             ]
             },
             {
-                id: 6, fn : getAlbumTopTags, name: 'Get Top Tags', group:'Album',
+                id: 6, fn : _searchAlbum, name: 'Search by Album - Full', group:'Album',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
                             {id: 'albumName', label:'Album Name', required: true}
                             ]
+            },
+            {
+                id: 8, fn : getAlbumTopTags, name: 'Get Top Tags', group:'Album',
+                    params:[
+                            {id: 'artistName', label:'Artist Name', required: true, default:'The Cure'},
+                            {id: 'albumName', label:'Album Name', required: true}
+                            ]  // tags do not work with mbid despite what lastfm docs say
+            },
+            {
+                id: 9, fn : _getAlbumTopTags, name: 'Get Top Tags - Full', group:'Album',
+                    params:[
+                            {id: 'artistName', label:'Artist Name', required: true, default:'Faith'},
+                            {id: 'albumName', label:'Album Name', required: true}
+                            ]  // tags do not work with mbid despite what lastfm docs say
             },
 
             // Artist
             {
-                id: 20, fn : getTopAlbums, name: 'Get Top Albums', group:'Artist', 
+                id: 20, fn : getTopAlbums, name: 'Get Top Albums', group:'Artist',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
                             ]
             },
             {
-                id: 22, fn : getArtist, name: 'Get Artist', group:'Artist',
+                id: 21, fn : _getTopAlbums, name: 'Get Top Albums - Full', group:'Artist',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
                             ]
             },
             {
-                id: 24, fn : searchArtist, name: 'Search by Artist', group:'Artist',
+                id: 23, fn : getArtist, name: 'Get Artist', group:'Artist',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
+                            ]
+            },
+            {
+                id: 24, fn : _getArtist, name: 'Get Artist - Full', group:'Artist',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
+                            ]
+            },
+            {
+                id: 26, fn : searchArtist, name: 'Search by Artist', group:'Artist',
                     params:[
                             {id: 'artistName', label:'Artist Name', required: true}
                             ]
             },
             {
-                id: 26, fn : getSimilar, name: 'Get Similar', group:'Artist',
+                id: 27, fn : _searchArtist, name: 'Search by Artist - Full', group:'Artist',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'artistName', label:'Artist Name', required: true}
                             ]
             },
             {
-                id: 28, fn : getArtistTopTags, name: 'Get Top Tags', group:'Artist',
+                id: 29, fn : getSimilar, name: 'Get Similar', group:'Artist',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
                             ]
             },
             {
-                id: 30, fn : getTopTracks, name: 'Get Top Tracks', group:'Artist', 
+                id: 30, fn : _getSimilar, name: 'Get Similar - Full', group:'Artist',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
+                            ]
+            },
+            {
+                id: 32, fn : getArtistTopTags, name: 'Get Top Tags', group:'Artist',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
+                            ]
+            },
+            {
+                id: 33, fn : _getArtistTopTags, name: 'Get Top Tags - Full', group:'Artist',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
+                            ]
+            },
+            {
+                id: 35, fn : getTopTracks, name: 'Get Top Tracks', group:'Artist',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
+                            ]
+            },
+            {
+                id: 36, fn : _getTopTracks, name: 'Get Top Tracks - Full', group:'Artist',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'69ee3720-a7cb-4402-b48d-a02c366f2bcf'}
                             ]
             },
 
@@ -88,19 +132,37 @@
             {
                 id: 40, fn : getTopArtists, name: 'Get Top Artists', group:'Charts',
                     params:[
-                            
+
                             ]
             },
             {
-                id: 42, fn : getChartsTopTags, name: 'Get Top Tags', group:'Charts',
+                id: 41, fn : _getTopArtists, name: 'Get Top Artists - Full', group:'Charts',
                     params:[
-                            
+
                             ]
             },
             {
-                id: 44, fn : getChartsTopTracks, name: 'Get Top Tracks', group:'Charts',
+                id: 43, fn : getChartsTopTags, name: 'Get Top Tags', group:'Charts',
                     params:[
-                            
+
+                            ]
+            },
+            {
+                id: 44, fn : _getChartsTopTags, name: 'Get Top Tags - Full', group:'Charts',
+                    params:[
+
+                            ]
+            },
+            {
+                id: 46, fn : getChartsTopTracks, name: 'Get Top Tracks', group:'Charts',
+                    params:[
+
+                            ]
+            },
+            {
+                id: 47, fn : _getChartsTopTracks, name: 'Get Top Tracks Full', group:'Charts',
+                    params:[
+
                             ]
             },
 
@@ -112,7 +174,19 @@
                             ]
             },
             {
-                id: 62, fn : getTopGeoTracks, name: 'Get Top Tracks', group:'Geo',
+                id: 61, fn : _getTopGeoArtists, name: 'Get Top Artists - Full', group:'Geo',
+                    params:[
+                            {id: 'country', label:'Country (United Kingdom, Iceland etc.)', required: true}
+                            ]
+            },
+            {
+                id: 63, fn : getTopGeoTracks, name: 'Get Top Tracks', group:'Geo',
+                    params:[
+                            {id: 'country', label:'Country (United Kingdom, Iceland)', required: true}
+                            ]
+            },
+            {
+                id: 64, fn : _getTopGeoTracks, name: 'Get Top Tracks - Full', group:'Geo',
                     params:[
                             {id: 'country', label:'Country (United Kingdom, Iceland)', required: true}
                             ]
@@ -120,33 +194,57 @@
 
             // Track
             {
-                id: 80, fn : searchTrack, name: 'Search by Track', group:'Track',
+                id: 80, fn : searchTrack, name: 'Search', group:'Track',
                     params:[
                             {id: 'trackName', label:'Track Name', required: true}
                             ]
             },
             {
-                id: 82, fn : getSimilarTrack, name: 'Get Similar', group:'Track',
+                id: 81, fn : _searchTrack, name: 'Search - Full', group:'Track',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'trackName', label:'Track Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'trackName', label:'Track Name', required: true}
                             ]
             },
             {
-                id: 84, fn : getTrackTopTags, name: 'Get Top Tags', group:'Track',
+                id: 83, fn : getSimilarTrack, name: 'Get Similar', group:'Track',
                     params:[
-                            {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'trackName', label:'Track Name', required: true},
-                            {id: 'mbid', label:'Mbid (takes precedence if entered)', required: false}
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'e7da35ed-ad25-4721-a3b2-43784fa4f856'},
+                            {id: 'trackName', label:'Track Name', required: true}
                             ]
             },
             {
-                id: 88, fn : getTrackInfo, name: 'Get Info', group:'Track',
+                id: 84, fn : _getSimilarTrack, name: 'Get Similar - Full', group:'Track',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'e7da35ed-ad25-4721-a3b2-43784fa4f856'},
+                            {id: 'trackName', label:'Track Name', required: true}
+                            ]
+            },
+            {
+                id: 86, fn : getTrackTopTags, name: 'Get Top Tags', group:'Track',
                     params:[
                             {id: 'artistName', label:'Artist Name', required: true},
-                            {id: 'trackName', label:'Track Name', required: true},
-                            {id: 'mbid', label:'Mbid', required: false}
+                            {id: 'trackName', label:'Track Name', required: true}
+                            ]  // tags do not work with mbid despite what lastfm docs say
+            },
+            {
+                id: 87, fn : _getTrackTopTags, name: 'Get Top Tags - Full', group:'Track',
+                    params:[
+                            {id: 'artistName', label:'Artist Name', required: true},
+                            {id: 'trackName', label:'Track Name', required: true}
+                            ]  // tags do not work with mbid despite what lastfm docs say
+            },
+            {
+                id: 89, fn : getTrackInfo, name: 'Get Info', group:'Track',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'e7da35ed-ad25-4721-a3b2-43784fa4f856'},
+                            {id: 'trackName', label:'Track Name', required: true}
+                            ]
+            },
+            {
+                id: 90, fn : _getTrackInfo, name: 'Get Info - Full', group:'Track',
+                    params:[
+                            {id: 'artistOrMbid', label:'Artist Name or mbid', required: true, default:'e7da35ed-ad25-4721-a3b2-43784fa4f856'},
+                            {id: 'trackName', label:'Track Name', required: true}
                             ]
             }
         ];
@@ -178,91 +276,212 @@
         // Calls
 
         // Album
+        // 91fa2331-d8b4-4d1f-aa4d-53b1c54853e5
+        // function getAlbumInfoX(artistOrMbid, album){
+        //     return LastFM.Album.albumX(artistOrMbid, album, {});
+        // }
+        function _getAlbumInfo(artist, album, mbid){
+            return LastFM.Album._album(artist, album, mbid, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function getAlbumInfo(artist, album, mbid){
             return LastFM.Album.album(artist, album, mbid, {});
         }
+        // function getAlbumInfoById(mbid){
+        //     return LastFM.Album.albumById(mbid, {});
+        // }
 
-        function getAlbumInfoById(mbid){
-            return LastFM.Album.albumById(mbid, {});
+
+        function _searchAlbum(album){
+            return LastFM.Album._search(album, {limit:10})
+                .then(function(response) {
+                    return response.data.results;
+                });
         }
-
         function searchAlbum(album){
-            return LastFM.Album.search(album, {limit:2});
+            return LastFM.Album.search(album, {limit:10});
         }
 
-        function getAlbumTopTags(artist, album, mbid){
+
+        function _getAlbumTopTags(artistOrMbid, album){
+            return LastFM.Album._topTags(artistOrMbid, album, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getAlbumTopTags(artistOrMbid, album){
             // var mbid = '91fa2331-d8b4-4d1f-aa4d-53b1c54853e5'; // The Cure : Disintegration
-            // mbid doesn't work (well)
-            return LastFM.Album.topTags(artist, album, mbid, {});
+            // mbid doesn't work (well) with tags
+            return LastFM.Album.topTags(artistOrMbid, album, {});
         }
-
 
         // Artist
-        function getTopAlbums(artist, mbid){
-            return LastFM.Artist.albums(artist, mbid, {});
+        function _getTopAlbums(artistOrMbid){
+            return LastFM.Artist._albums(artistOrMbid, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getTopAlbums(artistOrMbid){
+            return LastFM.Artist.albums(artistOrMbid, {});
         }
 
-        function getArtist(artist, mbid){
-            return LastFM.Artist.artist(artist, mbid, {});
+
+        function _getArtist(artistOrMbid){
+            return LastFM.Artist._artist(artistOrMbid, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getArtist(artistOrMbid){
+            return LastFM.Artist.artist(artistOrMbid, {});
         }
 
+
+        function _searchArtist(artist, mbid){
+            return LastFM.Artist._search(artist, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function searchArtist(artist, mbid){
             return LastFM.Artist.search(artist, {});
         }
 
-        function getSimilar(artist, mbid){
-            return LastFM.Artist.similar(artist, mbid, {});
+
+        function _getSimilar(artistOrMbid){
+            return LastFM.Artist._similar(artistOrMbid, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getSimilar(artistOrMbid){
+            return LastFM.Artist.similar(artistOrMbid, {});
         }
 
-        function getArtistTopTags(artist, mbid){
-            return LastFM.Artist.topTags(artist, mbid, {});
+        
+        function _getArtistTopTags(artistOrMbid){
+            return LastFM.Artist._topTags(artistOrMbid, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getArtistTopTags(artistOrMbid){
+            return LastFM.Artist.topTags(artistOrMbid, {});
         }
 
-        function getTopTracks(artist, mbid){
-            return LastFM.Artist.tracks(artist, mbid, {});
-        }
 
+        function _getTopTracks(artistOrMbid){
+            return LastFM.Artist._tracks(artistOrMbid, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getTopTracks(artistOrMbid){
+            return LastFM.Artist.tracks(artistOrMbid, {});
+        }
 
         // Charts
+        function _getTopArtists(){
+            return LastFM.Charts._topArtists({limit:10})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function getTopArtists(){
-            return LastFM.Charts.topArtists({limit:2});
+            return LastFM.Charts.topArtists({limit:10});
         }
 
+
+        function _getChartsTopTags(){
+            return LastFM.Charts._topTags({limit:10})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function getChartsTopTags(){
-            return LastFM.Charts.topTags({limit:2});
+            return LastFM.Charts.topTags({limit:10});
         }
 
+
+        function _getChartsTopTracks(){
+            return LastFM.Charts._topTracks({limit:10})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function getChartsTopTracks(){
-            return LastFM.Charts.topTracks({limit:2});
+            return LastFM.Charts.topTracks({limit:10});
         }
 
 
-        // Geo        
+        // Geo
+        function _getTopGeoArtists(country){
+            return LastFM.Geo._topArtists(country, {limit:10})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function getTopGeoArtists(country){
-            return LastFM.Geo.topArtists(country, {limit:2});
+            return LastFM.Geo.topArtists(country, {limit:10});
         }
 
+
+        function _getTopGeoTracks(country){
+            return LastFM.Geo._topTracks(country, {limit:10})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function getTopGeoTracks(country){
-            return LastFM.Geo.topTracks(country, {limit:2});
+            return LastFM.Geo.topTracks(country, {limit:10});
         }
 
 
         // Track
+        function _searchTrack(track){
+            return LastFM.Track._search(track, {limit:10})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
         function searchTrack(track){
-            return LastFM.Track.search(track, {limit:2});
+            return LastFM.Track.search(track, {limit:10});
         }
 
-        function getSimilarTrack(artist, track, mbid){
-            return LastFM.Track.similar(artist, track, mbid, {});
+        
+        function _getSimilarTrack(artistOrMbid, track){
+            return LastFM.Track._similar(artistOrMbid, track, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getSimilarTrack(artistOrMbid, track){
+            return LastFM.Track.similar(artistOrMbid, track, {});
         }
 
-        // mbid does not work (well) for tags : Have to send artist/tack
-        function getTrackTopTags(artist, track, mbid){
-            return LastFM.Track.topTags(artist, track, mbid, {});
+        // mbid does not work (well) for Tags : Have to send artist/tack
+        function _getTrackTopTags(artist, track){
+            return LastFM.Track._topTags(artist, track, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getTrackTopTags(artist, track){
+            return LastFM.Track.topTags(artist, track, {});
         }
 
-        function getTrackInfo(artist, track, mbid){
-            return LastFM.Track.track(artist, track, mbid, {});
+        // e7da35ed-ad25-4721-a3b2-43784fa4f856
+        function _getTrackInfo(artistOrMbid, track){
+            return LastFM.Track._track(artistOrMbid, track, {})
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        function getTrackInfo(artistOrMbid, track){
+            return LastFM.Track.track(artistOrMbid, track, {});
         }
 
 

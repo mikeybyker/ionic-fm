@@ -40,6 +40,10 @@ h2.album-title
 {
     min-height: 500px;
 }
+.api-input-list .item-input-inset div
+{
+    width: 100%;
+}
 .api-input-list .item-input-inset .item-input-wrapper input
 {
     padding-left: 9px;

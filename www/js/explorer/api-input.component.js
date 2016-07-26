@@ -10,11 +10,16 @@
             },
             controller: function($log, $scope){
 
-                var $ctrl = this;
-                this.selectedOption =  $ctrl.apiMethods[0];
-                this.fields = {};
-                this.callApi = callApi;
-                this.selectChange = selectChange;
+                var $ctrl = this,
+                    mbidPattern = /^[a-fA-F0-9]{8}(-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$/;
+
+                $ctrl.selectedOption =  $ctrl.apiMethods[0];
+                $ctrl.fields = {};
+                $ctrl.callApi = callApi;
+                $ctrl.change = change;
+                $ctrl.selectChange = selectChange;
+
+                $ctrl.validMbid = false;
 
                 function callApi()
                 {
@@ -22,6 +27,29 @@
                         o = {data: $ctrl.selectedOption, params: params};
                     // $log.info('Call method with : ', params);
                     $ctrl.onCall(o);
+                }
+
+                // 91fa2331-d8b4-4d1f-aa4d-53b1c54853e5
+                function change(value){
+                    $ctrl.validMbid = mbidPattern.test(value);
+                }
+                function initFields(option){
+                    var id;
+                    $ctrl.acceptsMbid = false;
+                    for(var i=0, len=option.params.length;i<len;i++)
+                    {
+                        id = option.params[i].id;
+
+                        if(option.params[i].default){
+                            $ctrl.fields[id] = option.params[i].default;
+                        }
+                        if(id === 'artistOrMbid')
+                        {
+                            $ctrl.acceptsMbid = true;
+                            change($ctrl.fields[id] || '');
+                        }
+                    }
+                    return false;
                 }
 
                 function getParamsArray(data, fields){
@@ -36,9 +64,28 @@
                 // Just to clear the fields...
                 function selectChange(){
                     $ctrl.fields = {};
+                    $ctrl.validMbid = false;
+                    initFields($ctrl.selectedOption);
                 }
+
+                // Init
+                initFields($ctrl.selectedOption);
             },
             templateUrl: 'js/explorer/api-input.html'
+        })
+        .directive('mbid', function() {
+            return {
+                require: 'ngModel',
+                link: function(scope, elm, attrs, ctrl) {
+                    ctrl.$validators.mbid = function(modelValue, viewValue) {
+                        if (ctrl.$isEmpty(modelValue)) {
+                            // consider empty models to be valid
+                            return true;
+                        }
+                        return /^[a-fA-F0-9]{8}(-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$/.test(viewValue);
+                    };
+                }
+            };
         });
 
 })();
