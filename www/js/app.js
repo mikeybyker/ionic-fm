@@ -4,7 +4,7 @@
     angular
         .module('ionicfm', [
             'ionic',
-            'sw.lastfm'
+            'lastfm'
         ])
 
         .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {

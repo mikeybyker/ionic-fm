@@ -29,7 +29,6 @@
                     $ctrl.onCall(o);
                 }
 
-                // 91fa2331-d8b4-4d1f-aa4d-53b1c54853e5
                 function change(value){
                     $ctrl.validMbid = mbidPattern.test(value);
                 }
@@ -61,7 +60,6 @@
                     return params;
                 }
 
-                // Just to clear the fields...
                 function selectChange(){
                     $ctrl.fields = {};
                     $ctrl.validMbid = false;
@@ -72,22 +70,7 @@
                 initFields($ctrl.selectedOption);
             },
             templateUrl: 'js/explorer/api-input.html'
-        })
-        .directive('mbid', function() {
-            return {
-                require: 'ngModel',
-                link: function(scope, elm, attrs, ctrl) {
-                    ctrl.$validators.mbid = function(modelValue, viewValue) {
-                        if (ctrl.$isEmpty(modelValue)) {
-                            // consider empty models to be valid
-                            return true;
-                        }
-                        return /^[a-fA-F0-9]{8}(-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$/.test(viewValue);
-                    };
-                }
-            };
         });
-
 })();
 
 

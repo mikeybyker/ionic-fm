@@ -20,8 +20,8 @@
             
             Utilities.loadIndicator.show();
 
-            var info = LastFM.Artist.artist(this.artistname, {}),
-                albums = LastFM.Artist.albums(this.artistname, {limit: 6});
+            var info = LastFM.Artist.getInfo(this.artistname, {}),
+                albums = LastFM.Artist.getTopAlbums(this.artistname, {limit: 6});
 
             $q.all([info, albums])
                 .then(function(response) {
