@@ -3,6 +3,7 @@
 
 node_modules/
 platforms/
+www/lib/
 plugins/
 app.config.js
 keys.txt
